@@ -227,7 +227,7 @@
         async function loadArticles() {
             try {
                 const res = await fetch(
-                    `/api/articles?category=${currentCategory}&hours=${currentHours}&limit=300`);
+                    `/api/articles?category=${encodeURIComponent(currentCategory)}&hours=${currentHours}&limit=300`);
                 allArticles = await res.json();
                 renderArticles();
             } catch(e) {

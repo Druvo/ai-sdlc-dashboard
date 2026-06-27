@@ -41,30 +41,47 @@ REQUEST_TIMEOUT = 15
 # ─── RSS Feeds — SDLC-focused only ───────────────────────────────────
 
 RSS_FEEDS = {
-    # AI coding tools & agents
+    # ── Official AI company blogs ──
     "Anthropic Blog": "https://www.anthropic.com/rss.xml",
     "OpenAI Blog": "https://openai.com/blog/rss.xml",
     "Google AI Blog": "https://blog.google/technology/ai/rss/",
     "HuggingFace Blog": "https://huggingface.co/blog/feed.xml",
-    "GitHub Changelog": "https://github.blog/changelog/feed/",
+    "DeepMind Blog": "https://deepmind.google/blog/rss.xml",
+    "Meta AI Blog": "https://ai.meta.com/blog/rss/",
+    "Mistral Blog": "https://mistral.ai/feed.xml",
 
-    # Developer-focused AI practitioners
-    "Simon Willison": "https://simonwillison.net/atom/everything/",
-    "Chip Huyen": "https://huyenchip.com/feed.xml",
-    "The Batch (Andrew Ng)": "https://www.deeplearning.ai/the-batch/feed/",
+    # ── AI coding tools ──
+    "GitHub Changelog": "https://github.blog/changelog/feed/",
+    "Cursor Blog": "https://www.cursor.com/blog/rss.xml",
     "LangChain Blog": "https://blog.langchain.dev/rss/",
     "LlamaIndex Blog": "https://www.llamaindex.ai/blog/rss.xml",
+    "Langfuse Blog": "https://blog.langfuse.com/rss.xml",
+    "CrewAI Blog": "https://www.crewai.com/blog/rss.xml",
 
-    # AI dev news
+    # ── AI newsletters & digests ──
+    "AI News (Latent Space)": "https://buttondown.com/ainews/rss",
+    "Last Week in AI": "https://lastweekin.ai/feed",
+    "The AI Exchange": "https://newsletter.theaiedge.io/feed",
+    "The Batch (Andrew Ng)": "https://www.deeplearning.ai/the-batch/feed/",
+
+    # ── Developer-focused AI practitioners ──
+    "Simon Willison": "https://simonwillison.net/atom/everything/",
+    "Chip Huyen": "https://huyenchip.com/feed.xml",
+    "Interconnects (Nathan Lambert)": "https://www.interconnects.ai/feed",
+    "Ahead of AI (Sebastian Raschka)": "https://magazine.sebastianraschka.com/feed",
+    "Latent Space Podcast": "https://www.latent.space/feed",
+
+    # ── AI dev news ──
     "Ars Technica AI": "https://feeds.arstechnica.com/arstechnica/technology-lab",
     "The Verge AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
     "TechCrunch AI": "https://techcrunch.com/category/artificial-intelligence/feed/",
     "VentureBeat AI": "https://venturebeat.com/category/ai/feed/",
 
-    # Research (coding-relevant only)
+    # ── Research (coding-relevant) ──
     "arXiv cs.AI": "https://rss.arxiv.org/rss/cs.AI",
     "arXiv cs.CL (NLP)": "https://rss.arxiv.org/rss/cs.CL",
     "arXiv cs.SE (Software Eng)": "https://rss.arxiv.org/rss/cs.SE",
+    "arXiv cs.LG (ML)": "https://rss.arxiv.org/rss/cs.LG",
 }
 
 # ─── Category Keywords — SDLC boost only ─────────────────────────────
@@ -481,7 +498,8 @@ async def fetch_all():
             "VALUES (?,?,?)", ("Hacker News", now, len(hn)))
 
         # Reddit
-        for sub in ["LocalLLaMA", "MachineLearning", "artificial"]:
+        for sub in ["LocalLLaMA", "MachineLearning", "artificial",
+                     "ChatGPTPro", "ClaudeAI", "singularity", "OpenAI"]:
             reddit = await fetch_reddit(session, sub)
             all_articles.extend(reddit)
             conn_log.execute(
